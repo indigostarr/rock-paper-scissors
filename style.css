@@ -1,0 +1,50 @@
+body {
+  background-color: 16537a;
+}
+main {
+  background-color: grey;
+  margin: 20px;
+  -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+    0px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
+    0px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+h1 {
+  margin: auto;
+  text-align: center;
+  padding: 4px;
+}
+
+.scores {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#player-score-board {
+  padding-left: 50px;
+}
+
+#computer-score-board {
+  padding-left: 50px;
+}
+
+#player-choices {
+  text-align: center;
+  margin: 20px;
+  display: block;
+}
+img {
+  height: 100px;
+  width: 100px;
+  margin: 8px;
+}
+
+img:hover {
+  box-shadow: 5px 5px 5px 0px #000000;
+}
+
+.hidden {
+  display: none;
+}

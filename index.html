@@ -1,4 +1,27 @@
 <head>
+  <link rel="stylesheet" href="style.css" />
   <script defer src="script.js" /></script>
 </head>
 
+<!-- Create game  -->
+<!-- Game play div -->
+<main>
+  <h1>Rock Paper Scissors</h1>
+  
+  <div class="scores"> 
+    <div id="play-score-board">
+      <h2>Player Score</h2>
+  <h2 id="player-score">0</h2></div>
+  <div id="computer-score-board">
+  <h2>Computer Score</h2>
+  <h2 id="computer-score">0</h2></div>
+</div>
+  <div id="player-selection" class="selection"></div>
+  <div id="player-choices">
+    <h2 class="message">Ready to Play!</h2>
+    <img id="rock" class="rock-hidden" src="rock.png" alt="rock"/>
+    <img id="paper" class="paper-hidden" src="paper.png" alt="paper"/>
+    <img id="scissors" class="scissors-hidden" src="scissor.png" alt="scissors"/>
+  </div>
+  <div id="computer-selection" class="selection" class="hide"></div>
+</main>
