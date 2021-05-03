@@ -1,19 +1,67 @@
 body {
-  background-color: 16537a;
-}
-main {
-  background-color: grey;
-  margin: 20px;
-  -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
-    0px 5px 15px 5px rgba(0, 0, 0, 0);
-  box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
-    0px 5px 15px 5px rgba(0, 0, 0, 0);
+  background: #f5f4f0;
+  font-family: "Freckle Face", cursive;
+  margin: 0px;
 }
 
-h1 {
+/* create sticky vertical nav */
+
+nav {
+  background-image: url("sidebar.svg");
+  display: block;
+  width: 200px;
+  height: 100%;
+  position: fixed;
+}
+ul {
+  list-style-type: none;
+  margin-left: 36px;
+  padding: 4px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #f5f4f0;
+}
+
+button {
+  font-family: "Freckle Face", cursive;
+  background: #f5f4f0;
+  border-radius: 10px;
+  width: 101px;
+  height: 41px;
+  left: 36px;
+  top: 144px;
+  font-size: 18px;
+  line-height: 21px;
+  padding: 4px;
+}
+h1,
+h2 {
   margin: auto;
   text-align: center;
   padding: 4px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 55px;
+  color: #1d1d1d;
+}
+
+#selections {
+  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+#player,
+#computer,
+#player-selections,
+#computer-selections {
+  text-align: center;
+  margin: 20px;
+  display: block;
 }
 
 .scores {
@@ -22,29 +70,71 @@ h1 {
   align-items: center;
 }
 
-#player-score-board {
-  padding-left: 50px;
-}
-
-#computer-score-board {
-  padding-left: 50px;
-}
-
-#player-choices {
-  text-align: center;
-  margin: 20px;
-  display: block;
-}
 img {
-  height: 100px;
-  width: 100px;
-  margin: 8px;
+  transform: rotate(3.26deg);
+  padding: 4px;
+  width: 136px;
+  height: 184px;
 }
 
-img:hover {
-  box-shadow: 5px 5px 5px 0px #000000;
+.player-choices:hover {
+  width: 155px;
+  height: 204px;
+  transition: width 1s, height 1s;
 }
 
+#end-round {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+}
+
+.message {
+  background: #000000;
+  border: 5.62001px solid #000000;
+  box-sizing: border-box;
+  border-radius: 131.133px;
+  font-family: "Freckle Face", cursive;
+  color: #f5f4f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 916.06px;
+  height: 237.91px;
+  left: 281.61px;
+  top: 233px;
+}
+
+@media screen and (max-width: 1200px) {
+  .message {
+    width: 716.06px;
+    height: 200.91px;
+    margin-left: 10px;
+    transition: width 1s, height 1s;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .message {
+    width: 516.06px;
+    height: 150.91px;
+    margin-left: 10px;
+    transition: width 1s, height 1s;
+  }
+}
 .hidden {
   display: none;
+}
+
+#selections::after {
+  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}
+
+.not-selected {
+  opacity: 0.5;
 }

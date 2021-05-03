@@ -1,27 +1,49 @@
 <head>
   <link rel="stylesheet" href="style.css" />
   <script defer src="script.js" /></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Freckle+Face&display=swap" rel="stylesheet">
 </head>
 
-<!-- Create game  -->
-<!-- Game play div -->
+
+<!-- vertical nav bar -->
 <main>
-  <h1>Rock Paper Scissors</h1>
-  
-  <div class="scores"> 
-    <div id="play-score-board">
-      <h2>Player Score</h2>
-  <h2 id="player-score">0</h2></div>
-  <div id="computer-score-board">
-  <h2>Computer Score</h2>
-  <h2 id="computer-score">0</h2></div>
-</div>
-  <div id="player-selection" class="selection"></div>
-  <div id="player-choices">
-    <h2 class="message">Ready to Play!</h2>
-    <img id="rock" class="rock-hidden" src="rock.png" alt="rock"/>
-    <img id="paper" class="paper-hidden" src="paper.png" alt="paper"/>
-    <img id="scissors" class="scissors-hidden" src="scissor.png" alt="scissors"/>
+  <nav>
+  <ul>
+    <li>Rock</li>
+    <li>Paper</li>
+    <li>Scissors</li>
+    <li><button id="new-game">New Game</button></li>
+  </ul>
+</nav>
+
+<!-- game  -->
+  <div id="game">
+  <div id="selections" class="selection">
+  <div id="computer">
+    <div id="computer-score-board" class="">
+      <h2>Computer Score</h2>
+      <h2 id="computer-score">0</h2>
+    </div>
+      <div class="computer-choices">
+      <img id="question" class="computer-choices" src="question.png"/>
+    </div>
   </div>
-  <div id="computer-selection" class="selection" class="hide"></div>
+  <div id="end-round">
+    <h1 class="message">Ready to Play!</h1>
+  </div>
+  
+  <div id="player">
+    <div id="play-score-board" class="">
+      <h2>Player Score</h2>
+      <h2 id="player-score">0</h2>
+</div>
+<div class="player-choice-selections">
+    <img id="rock" class="player-choices" src="rock.png" alt="rock"/>
+    <img id="paper" class="player-choices" src="paper.png" alt="paper"/>
+    <img id="scissors" class="player-choices" src="scissors.png" alt="scissors"/>
+  </div>
+</div>
+  </div>
+  </div>
 </main>
