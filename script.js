@@ -68,8 +68,6 @@ function playerPlay(event) {
   console.log(
     (document.getElementById("question").src = `${computerSelection}.png`)
   );
-  notSelected(playerScoreBoard);
-  notSelected(computerScoreBoard);
   rockPaperScissors(computerSelection, playerSelection);
 
   // body.font = light grey
@@ -78,6 +76,8 @@ function playerPlay(event) {
 
   // reset screen
   setTimeout(() => message.classList.remove("hidden"), 700);
+  setTimeout(() => notSelected(playerScoreBoard), 750);
+  setTimeout(() => notSelected(computerScoreBoard), 750);
   setTimeout(hideMessageModal, 3000);
   setTimeout(resetMatch, 3000);
 }
@@ -89,13 +89,13 @@ function computerPlay() {
   // use the number to switch and return the name
   switch (play) {
     case 0:
-      return "rock";
+      return "Rock";
       break;
     case 1:
-      return "paper";
+      return "Paper";
       break;
     case 2:
-      return "scissors";
+      return "Scissors";
       break;
   }
 }
@@ -103,16 +103,16 @@ function computerPlay() {
 // create a game to take computer and player inputs and declare a winner
 function rockPaperScissors(computerSelection, playerSelection) {
   if (computerSelection === playerSelection) {
-    message.textContent = "Tie";
+    message.textContent = `Tie you both selected ${computerSelection}`;
   } else if (
-    (computerSelection === "rock" && playerSelection === "paper") ||
-    (computerSelection === "paper" && playerSelection === "scissors")
+    (computerSelection === "Rock" && playerSelection === "Paper") ||
+    (computerSelection === "Paper" && playerSelection === "Scissors")
   ) {
-    message.textContent = "You win!";
+    message.textContent = `You win ${playerSelection} beats ${computerSelection}!`;
     playerScoreNum++;
     playerScore.textContent = playerScoreNum;
   } else {
-    message.textContent = "Computer wins!";
+    message.textContent = `Computer wins! ${computerSelection} beats ${playerSelection}`;
     computerScoreNum++;
     computerScore.textContent = computerScoreNum;
   }

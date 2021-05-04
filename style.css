@@ -86,7 +86,7 @@ img {
 #end-round {
   z-index: 1;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 55%;
   transform: translate(-50%, -50%);
 }
@@ -101,16 +101,16 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 816.06px;
-  height: 210.91px;
+  width: 800.06px;
+  height: 200.91px;
   left: 281.61px;
   top: 233px;
 }
 
 @media screen and (max-width: 1200px) {
   .message {
-    width: 616.06px;
-    height: 190.91px;
+    width: 642.06px;
+    height: 158.91px;
     margin-left: 20px;
     transition: width 1s, height 1s;
   }
@@ -118,10 +118,11 @@ img {
 
 @media screen and (max-width: 1050px) {
   .message {
-    width: 416.06px;
-    height: 150.91px;
+    width: 400.06px;
+    height: 98.91px;
     margin-left: 10px;
     transition: width 1s, height 1s;
+    text-align: center;
   }
 }
 .hidden {
