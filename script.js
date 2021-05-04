@@ -38,13 +38,21 @@ function hideMessageModal() {
   message.classList.add("hidden");
 }
 
+function endGame() {
+  message.classList.remove("hidden");
+  notSelected(playerScoreBoard);
+  notSelected(computerScoreBoard);
+  paper.removeEventListener("click", game);
+  rock.removeEventListener("click", game);
+  scissors.removeEventListener("click", game);
+}
+
 let playerScoreNum = 0;
 let computerScoreNum = 0;
 
-body.addEventListener("click", hideMessageModal);
-paper.addEventListener("click", playerPlay);
-rock.addEventListener("click", playerPlay);
-scissors.addEventListener("click", playerPlay);
+paper.addEventListener("click", game);
+rock.addEventListener("click", game);
+scissors.addEventListener("click", game);
 
 newGame.addEventListener("click", () => {
   message.textContent = "Ready to Play!";
@@ -52,9 +60,14 @@ newGame.addEventListener("click", () => {
   playerScore.textContent = 0;
   computerScore.textContent = 0;
   showChoices(playerChoices, computerChoices);
+  paper.addEventListener("click", game);
+  rock.addEventListener("click", game);
+  scissors.addEventListener("click", game);
 });
 
-function playerPlay(event) {
+function game(event) {
+  hideMessageModal();
+
   let playerSelection = event.currentTarget.alt;
 
   for (let i = 0; i < playerChoices.length; i++) {
@@ -64,22 +77,27 @@ function playerPlay(event) {
   }
 
   let computerSelection = computerPlay();
-  document.getElementById("question").src = `"${computerSelection}.png"`;
-  console.log(
-    (document.getElementById("question").src = `${computerSelection}.png`)
-  );
+  document.getElementById("question").src = `${computerSelection}.png`;
   rockPaperScissors(computerSelection, playerSelection);
-
+  console.log(playerScoreNum, computerScoreNum);
   // body.font = light grey
   // add selected to player and computer
   // remove hidden on delay to a pop up
 
   // reset screen
-  setTimeout(() => message.classList.remove("hidden"), 700);
-  setTimeout(() => notSelected(playerScoreBoard), 750);
-  setTimeout(() => notSelected(computerScoreBoard), 750);
-  setTimeout(hideMessageModal, 3000);
-  setTimeout(resetMatch, 3000);
+
+  if (
+    (playerScoreNum === 5 && computerScoreNum < 5) ||
+    (computerScoreNum === 5 && playerScoreNum < 5)
+  ) {
+    endGame();
+  } else {
+    setTimeout(() => message.classList.remove("hidden"), 700);
+    setTimeout(() => notSelected(playerScoreBoard), 750);
+    setTimeout(() => notSelected(computerScoreBoard), 750);
+    setTimeout(hideMessageModal, 3000);
+    setTimeout(resetMatch, 3000);
+  }
 }
 
 function computerPlay() {
@@ -108,12 +126,22 @@ function rockPaperScissors(computerSelection, playerSelection) {
     (computerSelection === "Rock" && playerSelection === "Paper") ||
     (computerSelection === "Paper" && playerSelection === "Scissors")
   ) {
-    message.textContent = `You win ${playerSelection} beats ${computerSelection}!`;
     playerScoreNum++;
     playerScore.textContent = playerScoreNum;
+    if (playerScoreNum === 5) {
+      message.textContent = `You win the game with 5 points!`;
+      endGame();
+    } else {
+      message.textContent = `You win ${playerSelection} beats ${computerSelection}!`;
+    }
   } else {
-    message.textContent = `Computer wins! ${computerSelection} beats ${playerSelection}`;
     computerScoreNum++;
     computerScore.textContent = computerScoreNum;
+    if (computerScoreNum === 5) {
+      message.textContent = `Computer wins the game with 5 points!`;
+      endGame();
+    } else {
+      message.textContent = `Computer wins! ${computerSelection} beats ${playerSelection}`;
+    }
   }
 }
