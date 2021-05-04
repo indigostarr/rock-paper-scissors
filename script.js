@@ -108,11 +108,11 @@ function rockPaperScissors(computerSelection, playerSelection) {
     (computerSelection === "rock" && playerSelection === "paper") ||
     (computerSelection === "paper" && playerSelection === "scissors")
   ) {
-    message.textContent = "Player beats Computer";
+    message.textContent = "You win!";
     playerScoreNum++;
     playerScore.textContent = playerScoreNum;
   } else {
-    message.textContent = "Computer beats player";
+    message.textContent = "Computer wins!";
     computerScoreNum++;
     computerScore.textContent = computerScoreNum;
   }
