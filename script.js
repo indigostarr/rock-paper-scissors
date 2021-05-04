@@ -6,6 +6,7 @@ const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const message = document.querySelector(".message");
+const body = document.querySelector("body");
 const playerScoreBoard = document.querySelectorAll("#player-score-board");
 const computerScoreBoard = document.querySelectorAll("#computer-score-board");
 let playerScore = document.querySelector("#player-score");
@@ -14,8 +15,8 @@ let playerChoices = document.getElementsByClassName("player-choices");
 let computerChoices = document.getElementsByClassName("computer-choices");
 let newGame = document.querySelector("button");
 
-function showChoices(player) {
-  Array.from(player).forEach((element) => {
+function showChoices(choices) {
+  Array.from(choices).forEach((element) => {
     element.classList.remove("not-selected");
   });
 }
@@ -26,11 +27,9 @@ function resetMatch() {
   showChoices(playerChoices);
   showChoices(computerChoices);
 }
-showChoices(playerChoices);
-showChoices(computerChoices);
 
-function notSelected(player) {
-  Array.from(player).forEach((element) => {
+function notSelected(choices) {
+  Array.from(choices).forEach((element) => {
     element.classList.add("not-selected");
   });
 }
@@ -42,43 +41,45 @@ function hideMessageModal() {
 let playerScoreNum = 0;
 let computerScoreNum = 0;
 
-message.addEventListener("click", hideMessageModal);
+body.addEventListener("click", hideMessageModal);
 paper.addEventListener("click", playerPlay);
 rock.addEventListener("click", playerPlay);
 scissors.addEventListener("click", playerPlay);
+
 newGame.addEventListener("click", () => {
   message.textContent = "Ready to Play!";
-  message.classList.add("hidden");
+  message.classList.remove("hidden");
   playerScore.textContent = 0;
   computerScore.textContent = 0;
   showChoices(playerChoices, computerChoices);
 });
 
 function playerPlay(event) {
-  // hideChoices();
-
   let playerSelection = event.currentTarget.alt;
+
   for (let i = 0; i < playerChoices.length; i++) {
-    if (playerSelection != playerChoices[i]) {
+    if (playerSelection != playerChoices[i].alt) {
       playerChoices[i].classList.add("not-selected");
     }
   }
-  notSelected(playerScoreBoard);
-  notSelected(computerScoreBoard);
+
   let computerSelection = computerPlay();
   document.getElementById("question").src = `"${computerSelection}.png"`;
   console.log(
     (document.getElementById("question").src = `${computerSelection}.png`)
   );
+  notSelected(playerScoreBoard);
+  notSelected(computerScoreBoard);
   rockPaperScissors(computerSelection, playerSelection);
 
   // body.font = light grey
   // add selected to player and computer
   // remove hidden on delay to a pop up
-  message.classList.remove("hidden");
+
   // reset screen
-  setTimeout(hideMessageModal, 2000);
-  setTimeout(resetMatch, 2000);
+  setTimeout(() => message.classList.remove("hidden"), 700);
+  setTimeout(hideMessageModal, 3000);
+  setTimeout(resetMatch, 3000);
 }
 
 function computerPlay() {
