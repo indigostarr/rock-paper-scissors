@@ -7,7 +7,7 @@ body {
 /* create sticky vertical nav */
 
 nav {
-  background-image: url("sidebar.svg");
+  background-color: black;
   display: block;
   width: 200px;
   height: 100%;
