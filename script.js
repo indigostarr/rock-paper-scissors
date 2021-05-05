@@ -48,11 +48,6 @@ function resetRound() {
   setTimeout(() => message.classList.remove("hidden"), 500);
   setTimeout(() => notSelected(playerScoreBoard), 500);
   setTimeout(() => notSelected(computerScoreBoard), 500);
-  setTimeout(hideMessageModal, 2000);
-  setTimeout(() => showChoices(playerScoreBoard), 2000);
-  setTimeout(() => showChoices(computerScoreBoard), 2000);
-  setTimeout(() => showChoices(playerChoices), 2000);
-  setTimeout(() => showChoices(computerChoices), 2000);
 }
 
 // function to end the game after 5 rounds
@@ -63,13 +58,16 @@ function endGame() {
   scissors.removeEventListener("click", game);
 }
 
+// create event listeners for selections
 paper.addEventListener("click", game);
 rock.addEventListener("click", game);
 scissors.addEventListener("click", game);
 
+// function to reset once a new game is initiated
 newGame.addEventListener("click", () => {
   message.textContent = "Ready to Play!";
   message.classList.remove("hidden");
+  setTimeout(hideMessageModal, 2000);
   playerScoreNum = 0;
   playerScore.textContent = 0;
   computerScoreNum = 0;
@@ -80,8 +78,13 @@ newGame.addEventListener("click", () => {
   scissors.addEventListener("click", game);
 });
 
+// game based on click event input
 function game(event) {
-  // hideMessageModal();
+  hideMessageModal();
+  showChoices(playerScoreBoard);
+  showChoices(computerScoreBoard);
+  showChoices(playerChoices);
+  showChoices(computerChoices);
 
   let playerSelection = event.currentTarget.alt;
 
@@ -123,11 +126,10 @@ function computerPlay() {
 // create a game to take computer and player inputs and declare a winner
 function rockPaperScissors(computerSelection, playerSelection) {
   if (
-    (computerSelection === "Paper" && playerSelection === "Rock") ||
-    (computerSelection === "Scissors" && playerSelection === "Paper") ||
-    (computerSelection === "Rock" &&
-      playerSelection === "Scissors" &&
-      (playerScoreNum <= 5 || computerScoreNum <= 5))
+    ((computerSelection === "Paper" && playerSelection === "Rock") ||
+      (computerSelection === "Scissors" && playerSelection === "Paper") ||
+      (computerSelection === "Rock" && playerSelection === "Scissors")) &&
+    (playerScoreNum <= 5 || computerScoreNum <= 5)
   ) {
     computerScoreNum++;
     computerScore.textContent = computerScoreNum;
@@ -140,15 +142,14 @@ function rockPaperScissors(computerSelection, playerSelection) {
       resetRound();
     }
   } else if (
-    (playerSelection === "Paper" && computerSelection === "Rock") ||
-    (playerSelection === "Scissors" && computerSelection === "Paper") ||
-    (playerSelection === "Rock" &&
-      computerSelection === "Scissors" &&
-      (playerScoreNum <= 5 || computerScoreNum <= 5))
+    ((playerSelection === "Paper" && computerSelection === "Rock") ||
+      (playerSelection === "Scissors" && computerSelection === "Paper") ||
+      (playerSelection === "Rock" && computerSelection === "Scissors")) &&
+    (playerScoreNum < 5 || computerScoreNum < 5)
   ) {
     playerScoreNum++;
     playerScore.textContent = playerScoreNum;
-    if (playerScoreNum === 5) {
+    if (playerScoreNum >= 5) {
       message.textContent = `You win the game with 5 points!`;
       notSelected(computerScoreBoard);
       endGame();
