@@ -7,7 +7,7 @@ body {
 /* create sticky vertical nav */
 
 nav {
-  background-color: black;
+  background: black;
   display: block;
   width: 200px;
   height: 100%;
