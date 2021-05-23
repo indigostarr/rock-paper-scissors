@@ -7,7 +7,7 @@ const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 
-// declare variables for
+// declare variables for modal message
 const message = document.querySelector(".message");
 
 // declare variables for computer and player scoreboard
@@ -45,9 +45,11 @@ setTimeout(hideMessageModal, 2000);
 
 // function that resets opacity of the score board and anything not selected during end round screen
 function resetRound() {
-  setTimeout(() => message.classList.remove("hidden"), 500);
-  setTimeout(() => notSelected(playerScoreBoard), 500);
-  setTimeout(() => notSelected(computerScoreBoard), 500);
+  setTimeout(() => hideMessageModal(), 700);
+  setTimeout(() => showChoices(playerScoreBoard), 700);
+  setTimeout(() => showChoices(playerChoices), 700);
+  setTimeout(() => showChoices(computerScoreBoard), 700);
+  setTimeout(() => showChoices(computerChoices), 700);
 }
 
 // function to end the game after 5 rounds
@@ -80,11 +82,11 @@ newGame.addEventListener("click", () => {
 
 // game based on click event input
 function game(event) {
-  hideMessageModal();
-  showChoices(playerScoreBoard);
-  showChoices(computerScoreBoard);
-  showChoices(playerChoices);
-  showChoices(computerChoices);
+  // hideMessageModal();
+  // showChoices(playerScoreBoard);
+  // showChoices(computerScoreBoard);
+  // showChoices(playerChoices);
+  // showChoices(computerChoices);
 
   let playerSelection = event.currentTarget.alt;
 
@@ -135,10 +137,12 @@ function rockPaperScissors(computerSelection, playerSelection) {
     computerScore.textContent = computerScoreNum;
     if (computerScoreNum === 5) {
       message.textContent = `Computer wins the game with 5 points!`;
+      message.classList.remove("hidden");
       notSelected(playerScoreBoard);
       endGame();
     } else {
       message.textContent = `Computer wins! ${computerSelection} beats ${playerSelection}`;
+      message.classList.remove("hidden");
       resetRound();
     }
   } else if (
@@ -151,14 +155,17 @@ function rockPaperScissors(computerSelection, playerSelection) {
     playerScore.textContent = playerScoreNum;
     if (playerScoreNum >= 5) {
       message.textContent = `You win the game with 5 points!`;
+      message.classList.remove("hidden");
       notSelected(computerScoreBoard);
       endGame();
     } else {
       message.textContent = `You win ${playerSelection} beats ${computerSelection}!`;
+      message.classList.remove("hidden");
       resetRound();
     }
   } else {
     message.textContent = `Tie you both selected ${computerSelection}`;
+    message.classList.remove("hidden");
     resetRound();
   }
 }
