@@ -1,6 +1,6 @@
 # Rock Paper Scissors Game
 
-- The game has 2 players
+- This is a single player game played against the computer
 - In each turn, the player selects rock, paper or scissors
 - Rock > scissors || paper > rock || scissors > paper
 - If the player selects the same as the computer there is a tie and no player receives a point
